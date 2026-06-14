@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Home Finder — Find Your Perfect Place</title>
+  <meta name="description" content="The Home Finder helps you discover, compare, and save your dream homes. Browse curated listings across the country." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232f6f5e'%3E%3Cpath d='M12 3l9 8h-3v9h-4v-6h-4v6H6v-9H3z'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="The Home Finder home">
+        <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 8h-3v9h-4v-6h-4v6H6v-9H3z"/></svg>
+        <span class="brand-name">The Home <em>Finder</em></span>
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="#listings">Buy</a>
+        <a href="#listings">Rent</a>
+        <a href="#how">How it works</a>
+        <a href="#cities">Cities</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn btn-ghost" id="savedBtn" aria-label="Saved homes">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 21s-7.5-4.6-10-9.2C.4 8.4 2 5 5.2 5c2 0 3.3 1.1 4 2.2C9.7 6.1 11 5 13 5c3.2 0 4.8 3.4 3.2 6.8C19.5 16.4 12 21 12 21z"/></svg>
+          <span class="saved-count" id="savedCount">0</span>
+        </button>
+        <button class="btn btn-primary">Sign in</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Over 12,000 verified listings</p>
+        <h1 class="hero-title">Find the place<br />you'll call <em>home.</em></h1>
+        <p class="hero-sub">Search thousands of hand-picked homes for sale and rent. Filter by what matters, save your favorites, and tour them on your schedule.</p>
+
+        <form class="search-bar" id="searchBar" role="search">
+          <div class="field field-grow">
+            <label for="searchLocation">Location</label>
+            <input type="text" id="searchLocation" placeholder="City, neighborhood, or ZIP" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="searchType">Type</label>
+            <select id="searchType">
+              <option value="any">Any type</option>
+              <option value="House">House</option>
+              <option value="Condo">Condo</option>
+              <option value="Townhouse">Townhouse</option>
+              <option value="Apartment">Apartment</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="searchBudget">Max price</label>
+            <select id="searchBudget">
+              <option value="0">No max</option>
+              <option value="500000">$500k</option>
+              <option value="900000">$900k</option>
+              <option value="1500000">$1.5M</option>
+              <option value="3000000">$3M</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M21 21l-4.3-4.3M11 19a8 8 0 110-16 8 8 0 010 16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Search
+          </button>
+        </form>
+
+        <div class="hero-stats">
+          <div><strong>12k+</strong><span>Active listings</span></div>
+          <div><strong>48</strong><span>Cities covered</span></div>
+          <div><strong>4.9★</strong><span>Avg. rating</span></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80" alt="" loading="eager" />
+        <div class="hero-card">
+          <span class="hero-card-tag">Just listed</span>
+          <strong>$845,000</strong>
+          <span>4 bd · 3 ba · Austin, TX</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Listings -->
+  <main>
+    <section class="section" id="listings">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Featured homes</h2>
+            <p class="section-sub" id="resultsCount">Loading homes…</p>
+          </div>
+          <div class="filters" id="filters" role="group" aria-label="Filter listings">
+            <button class="chip is-active" data-filter="all">All</button>
+            <button class="chip" data-filter="For Sale">For sale</button>
+            <button class="chip" data-filter="For Rent">For rent</button>
+            <button class="chip" data-filter="New">New</button>
+            <div class="sort">
+              <label for="sortBy" class="sr-only">Sort by</label>
+              <select id="sortBy">
+                <option value="featured">Featured</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="beds">Most bedrooms</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" id="listingGrid"></div>
+        <p class="empty" id="emptyState" hidden>No homes match your filters yet. Try widening your search.</p>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section section-muted" id="how">
+      <div class="container">
+        <h2 class="section-title center">Finding home, made simple</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-icon">🔍</div>
+            <h3>Search smarter</h3>
+            <p>Filter by price, beds, type, and the features that actually matter to you.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">💚</div>
+            <h3>Save favorites</h3>
+            <p>Heart the homes you love and compare them side by side, anytime.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">📅</div>
+            <h3>Tour on your time</h3>
+            <p>Book a viewing in two taps and meet a local agent who knows the area.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cities -->
+    <section class="section" id="cities">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Explore by city</h2>
+        </div>
+        <div class="city-grid" id="cityGrid"></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container cta-inner">
+        <div>
+          <h2>Ready to find your home?</h2>
+          <p>Join 50,000+ buyers and renters who found their place with The Home Finder.</p>
+        </div>
+        <form class="cta-form" id="ctaForm">
+          <input type="email" placeholder="Enter your email" aria-label="Email" required />
+          <button class="btn btn-primary" type="submit">Get started</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 8h-3v9h-4v-6h-4v6H6v-9H3z"/></svg>
+          <span class="brand-name">The Home <em>Finder</em></span>
+        </a>
+        <p>Curated homes, honest data, and a search that respects your time.</p>
+      </div>
+      <div class="footer-cols">
+        <div><h4>Explore</h4><a href="#listings">Buy</a><a href="#listings">Rent</a><a href="#cities">Cities</a></div>
+        <div><h4>Company</h4><a href="#how">How it works</a><a href="#">About</a><a href="#">Careers</a></div>
+        <div><h4>Support</h4><a href="#">Help center</a><a href="#">Contact</a><a href="#">Privacy</a></div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> The Home Finder. A demo design.</span>
+      <span>Made for house-hunters everywhere.</span>
+    </div>
+  </footer>
+
+  <!-- Property detail modal -->
+  <div class="modal" id="propertyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" id="modalPanel"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
