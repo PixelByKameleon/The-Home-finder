@@ -1,3 +1,9 @@
 .DS_Store
 node_modules/
 *.log
+
+# Local preview / screenshot scratch artifacts (not part of the app)
+shot.js
+scenario.js
+preview-*.png
+scenario-*.png
